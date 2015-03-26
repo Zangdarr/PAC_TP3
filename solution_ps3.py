@@ -7,12 +7,12 @@ if __name__ == '__main__':
 
         challenge = server.query("PK/verkyndt")
         
-        print(challenge)
+        #print(challenge)
 
         p = challenge['p']
         g = challenge['g']
         h = challenge['h']
 
-        print("p {0}\ng {1}\nh {2}".format(p,g,h))
+        #print("p {0}\ng {1}\nh {2}".format(p,g,h))
 
         print("\n\n\nRAND resolution done\n\n")

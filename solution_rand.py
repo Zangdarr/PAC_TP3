@@ -49,20 +49,57 @@ def isThatRightValue(next_try,good_value):
             return True
         return False
 
+def getL():
+   return
+
 if __name__ == '__main__':
         print("RAND resolution starting now...\n\n\n")
         global Crandlib
 
         server = Server("http://pac.bouillaguet.info/TP3/rand/")        
-        
+ 
         challenge = server.query("challenge/verkyndt")
+	
+#        print(262143>>17)	
 
         print(challenge)
+        print(challenge['IV'][0])
+        print(challenge['IV'][1])
+        #Récupération du next de IV0, on va vérifié que l'on obtient IV1 à partir des next jusqu'à trouver le bon
+        next = -1
+        u = getU(challenge['IV'][0])
+        for i in range(0,2**16):
+            try0 = getPreviousNext(u[0] + i)
+            try1 = getPreviousNext(u[1] + i)
+            
+            
+            
+            if(isThatRightValue(try0,challenge['IV'][1])):
+                next = try0
+                break
+            if(isThatRightValue(try1,challenge['IV'][1])):
+                next = try1           
+                break
 
-        
+	
+        if(next == -1):
+           print("next n'a pas été trouvé.")
+            
 
-        #dico = { 'key': [0, 42, 666, 1337] }
+        for i in range(0,4):
+           next = getPreviousNext(next)
 
-        #status = server.query("prediction/verkyndt/", dico)
+        Crandlib.srand(next)
+        rand = [-1,-1,-1,-1]
+        for i in range(0,4):
+           rand[i] = Crandlib.rand()
+
+        print(rand)
+        key = ""
+        for i in range(0,len(rand)):
+            key += ""+str(rand[i])
+        dico = { 'key': rand }
+        server = Server("http://pac.bouillaguet.info/TP3/rand/")
+        status = server.query("validation/verkyndt", dico)
 
         print("\n\n\nRAND resolution done\n\n")

@@ -19,6 +19,15 @@ def XGCD(a,b):
 def modinv(a, b):
   g, x, y = XGCD(a,b)
   return x
+
+
+
+def getPreviousNext(next):
+        a = 1103515245
+        b = 12345
+        modinv_a = modinv(a,2**32)
+        return (((next - b) * modinv_a)%2**32)
+
 if __name__ == '__main__':
         print("RAND resolution starting now...\n\n\n")
         global Crandlib

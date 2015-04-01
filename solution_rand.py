@@ -37,6 +37,18 @@ def getU(iv):
         print("u0 : {0}, u1 : {1}, iv : {2}".format(u0,u1,iv))
         return (u0,u1)
 
+
+#Test if next_try is the good next value to get good_value
+def isThatRightValue(next_try,good_value):
+       
+        Crandlib.srand(next_try)
+        tmp = Crandlib.rand()
+        tmp = Crandlib.rand()
+        print("try : {0}, IV1 : {1}".format(tmp, good_value))
+        if(tmp == good_value):
+            return True
+        return False
+
 if __name__ == '__main__':
         print("RAND resolution starting now...\n\n\n")
         global Crandlib

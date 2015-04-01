@@ -28,6 +28,15 @@ def getPreviousNext(next):
         modinv_a = modinv(a,2**32)
         return (((next - b) * modinv_a)%2**32)
 
+#Return 2 U which is the 15 MSBs of iv with the MST at 0 or 1
+def getU(iv):
+        print("iv {0}".format(iv))
+        iv_bis = iv
+        u0 = iv<<16
+        u1 =32768 | (iv_bis<<16)
+        print("u0 : {0}, u1 : {1}, iv : {2}".format(u0,u1,iv))
+        return (u0,u1)
+
 if __name__ == '__main__':
         print("RAND resolution starting now...\n\n\n")
         global Crandlib

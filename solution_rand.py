@@ -101,5 +101,5 @@ if __name__ == '__main__':
         dico = { 'key': rand }
         server = Server("http://pac.bouillaguet.info/TP3/rand/")
         status = server.query("validation/verkyndt", dico)
-
+        print(status)
         print("\n\n\nRAND resolution done\n\n")
